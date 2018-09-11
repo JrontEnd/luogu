@@ -12,26 +12,28 @@ def input():
 
 import math
 
-lowestAmount = 0
-total = -1
+lowestAmount = -1
+total = 0
 
 def getAmount(price, count):
+    price = float(price)
+    count = float(count)
     global total,lowestAmount
     bundle_count = math.ceil(float(total)/float(count))
-    amount = bundle_count * price
-    if (total == -1 or amount < total):
-        total = amount
+    amount = int(bundle_count * price)
+    if (lowestAmount == -1 or amount < lowestAmount):
+        lowestAmount = amount
 
 def set_total(buy_total):
     global total
     total = buy_total
 
 set_total(input())
-[penPrice, penCount] = input().split()
+[penCount, penPrice] = input().split()
 getAmount(penPrice, penCount)
-[penPrice, penCount] = input().split()
+[penCount, penPrice] = input().split()
 getAmount(penPrice, penCount)
-[penPrice, penCount] = input().split()
+[penCount, penPrice] = input().split()
 getAmount(penPrice, penCount)
 
-print(total)
+print(lowestAmount)
